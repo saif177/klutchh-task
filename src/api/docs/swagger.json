@@ -1,0 +1,621 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "Movie-Review-Api",
+        "description": "Movie-Review-Api"
+    },
+    "basePath": "/",
+    "schemes": [
+        "http",
+        "https"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        
+        "/auth/log-in": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Log in system",
+                "description": "Log in system",
+                "operationId": "log-in",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/HeaderVersion"
+                    },
+                    {
+                        "$ref": "#/parameters/HeaderLanguage"
+                    },
+                    {
+                        "$ref": "#/parameters/HeaderPlatform"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/login"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Login",
+                        "schema": {
+                            "$ref": "#/definitions/responsesOk"
+                        }
+                    },
+                    "500": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/responsesError"
+                        }
+                    }
+                }
+            }
+        },
+        "/auth/signup": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Signup",
+                "description": "Sign Up",
+                "operationId": "signup",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/HeaderVersion"
+                    },
+                    {
+                        "$ref": "#/parameters/HeaderLanguage"
+                    },
+                    {
+                        "$ref": "#/parameters/HeaderPlatform"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/user_signup"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Signup",
+                        "schema": {
+                            "$ref": "#/definitions/responsesOk"
+                        }
+                    },
+                    "500": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/responsesError"
+                        }
+                    }
+                }
+            }
+        },
+        "/users/changepassword": {
+            "post": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Reset Password",
+                "description": "Reset password",
+                "operationId": "reset-password",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/HeaderVersion"
+                    },
+                    {
+                        "$ref": "#/parameters/HeaderLanguage"
+                    },
+                    {
+                        "$ref": "#/parameters/HeaderPlatform"
+                    },
+                    {
+                        "$ref": "#/parameters/HeaderAuth"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/reset_password"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User profile in system",
+                        "schema": {
+                            "$ref": "#/definitions/responsesOk"
+                        }
+                    },
+                    "500": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/responsesError"
+                        }
+                    }
+                }
+            }
+        },
+          "/auth/log-out": {
+            "get": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Logout",
+                "description": "",
+                "operationId": "logout",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/HeaderVersion"
+                    },
+                    {
+                        "$ref": "#/parameters/HeaderLanguage"
+                    },
+                    {
+                        "$ref": "#/parameters/HeaderPlatform"
+                    },
+                    {
+                        "$ref": "#/parameters/HeaderAuth"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/responsesOk"
+                        }
+                    },
+                    "500": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/responsesError"
+                        }
+                    }
+                }
+            }
+        },
+        "/users/add-profile": {
+            "post": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Add user profile",
+                "description": "Add user profile",
+                "operationId": "Add-profile",
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                  ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/HeaderVersion"
+                    },
+                    {
+                        "$ref": "#/parameters/HeaderLanguage"
+                    },
+                    {
+                        "$ref": "#/parameters/HeaderPlatform"
+                    },
+                    {
+                        "$ref": "#/parameters/HeaderAuth"
+                    },
+                    {
+                        "in": "formData",
+                        "name": "name",
+                        "value": "Jhon",
+                        "type": "string",
+                        "required": true
+                    },
+                    {
+                        "in": "formData",
+                        "name": "avatar",
+                        "type": "file"
+                        
+                    },
+                    {
+                        "in": "formData",
+                        "name":"category",
+                        "type":"array",
+                        "items":{
+                            "type":"object",
+                            "properties":{
+                                "title":{"type":"string" }
+                            }
+                        }
+                    }
+                   
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Add user profile",
+                        "schema": {
+                            "$ref": "#/definitions/responsesOk"
+                        }
+                    },
+                    "500": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/responsesError"
+                        }
+                    }
+                }
+            }
+        },
+        
+        "/users/movieslist":{
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Popular movies list",
+                "description": "Popular movies list",
+                "operationId": "movieslist",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/HeaderVersion"
+                    },
+                    {
+                        "$ref": "#/parameters/HeaderLanguage"
+                    },
+                    {
+                        "$ref": "#/parameters/HeaderPlatform"
+                    },
+                    {
+                        "$ref": "#/parameters/HeaderAuth"
+                    }
+
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Popular movies list",
+                        "schema": {
+                            "$ref": "#/definitions/responsesOk"
+                        }
+                    },
+                    "500": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/responsesError"
+                        }
+                    }
+                }
+            }
+        },
+
+          "/users/ratedMovieslist":{
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Rated movies list",
+                "description": "Rated movies list",
+                "operationId": "ratedMovieslist",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/HeaderVersion"
+                    },
+                    {
+                        "$ref": "#/parameters/HeaderLanguage"
+                    },
+                    {
+                        "$ref": "#/parameters/HeaderPlatform"
+                    },
+                    {
+                        "$ref": "#/parameters/HeaderAuth"
+                    }
+
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Rated movies list",
+                        "schema": {
+                            "$ref": "#/definitions/responsesOk"
+                        }
+                    },
+                    "500": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/responsesError"
+                        }
+                    }
+                }
+            }
+        },
+         "/users/ratemovie":{
+            "post": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Rate movies ",
+                "description": "Rate movies",
+                "operationId": "ratemovie",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/HeaderVersion"
+                    },
+                    {
+                        "$ref": "#/parameters/HeaderLanguage"
+                    },
+                    {
+                        "$ref": "#/parameters/HeaderPlatform"
+                    },
+                    {
+                        "$ref": "#/parameters/HeaderAuth"
+                    },
+                     {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/rateMovie"
+                        }
+                    }
+
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Popular movies list",
+                        "schema": {
+                            "$ref": "#/definitions/responsesOk"
+                        }
+                    },
+                    "500": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/responsesError"
+                        }
+                    }
+                }
+            }
+        }
+        
+    },
+    "definitions": {
+       
+       
+        "user_signup": {
+            "type": "object",
+            "required": [
+                "email",
+                "password",
+                "name"
+            ],
+            "properties": {
+                "email": {
+                    "type": "String",
+                    "example": "test@yopmail.com"
+                },
+                 "name": {
+                    "type": "String",
+                    "example": "Test Name"
+                },
+                "password": {
+                    "type": "String",
+                    "format": "password",
+                    "example": "Test@1234"
+                }
+            }
+        },
+        "login": {
+            "type": "object",
+            "required": [
+                "email",
+                "password"
+            ],
+            "properties": {
+                "email": {
+                    "type": "string",
+                    "example": "test@yopmail.com"
+                },
+                "password": {
+                    "type": "string",
+                    "example": "Test@1234"
+                }
+            }
+        },
+        "reset_password": {
+            "type": "object",
+            "required": [
+                "currentPassword",
+                "newPassword"
+            ],
+            "properties": {
+                "currentPassword": {
+                    "type": "string",
+                    "description": "Current Password",
+                    "example": "123456asdf"
+                },
+                "newPassword": {
+                    "type": "string",
+                    "description": "New Password",
+                    "example": "123456assds"
+                }
+            }
+        },
+        "logout": {
+            "type": "object",
+            "required": [
+                "device_token"
+            ],
+            "properties": {
+                "device_token": {
+                    "type": "string",
+                    "example": "device-token"
+                }
+            }
+        },
+        "rateMovie":{
+            "type": "object",
+            "properties": {
+                "movieId": {
+                    "type": "number",
+                    "description": "338953",
+                    "example": "338953"
+                },
+                "ratings": {
+                    "type": "number",
+                    "example": 8
+                }
+                
+            }
+        },
+        
+        "responsesOk": {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "type": "string"
+                },
+                "code": {
+                    "type": "string"
+                },
+                "msg": {
+                    "type": "string"
+                },
+                "data": {
+                    "type": "object"
+                }
+            }
+        },
+        "responsesError": {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "type": "string"
+                },
+                "code": {
+                    "type": "string"
+                },
+                "msg": {
+                    "type": "string"
+                },
+                "error": {
+                    "type": "object"
+                }
+            }
+        },
+        "loginResponseOk": {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "type": "string",
+                    "example": "",
+                    "description": ""
+                },
+                "code": {
+                    "type": "string"
+                },
+                "msg": {
+                    "type": "string"
+                },
+                "data": {
+                    "type": "object"
+                }
+            }
+        }
+    },
+    "parameters": {
+        "HeaderVersion": {
+            "name": "X-Movie-Review-Api",
+            "in": "header",
+            "description": "X-Movie-Review-Api",
+            "required": true,
+            "type": "string",
+            "default": "1.0.0"
+        },
+        "HeaderLanguage": {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "Accept-Language",
+            "required": true,
+            "type": "string",
+            "default": "en"
+        },
+        "HeaderPlatform": {
+            "name": "X-Movie-Review-Api",
+            "in": "header",
+            "description": "android or ios or web",
+            "required": true,
+            "type": "string",
+            "default": "android"
+        },
+        "HeaderAuth": {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Authorization",
+            "required": true,
+            "type": "string"
+        },
+        "HeaderOptionalAuth": {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Authorization",
+            "type": "string"
+        },
+        "HeaderCategory": {
+            "name": "category",
+            "in": "header",
+            "description": "category",
+            "required": true,
+            "type": "string"
+        }
+    }
+}
